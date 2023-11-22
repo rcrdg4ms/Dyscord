@@ -1,0 +1,73 @@
+<Windowborder>:
+    canvas.before:
+        Color:
+            rgb: 30/255, 31/255, 34/255
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    size_hint_y: None
+    height: 22
+
+    Label:
+        size_hint_x: None
+        width: 72
+        text: 'Dyscord'
+    
+    Label:
+        text: '...'
+    
+    Button:
+        size_hint_x: None
+        width: 28
+        text: '-'
+
+    Button:
+        size_hint_x: None
+        width: 28
+        text: '◻'
+
+    Button:
+        size_hint_x: None
+        width: 28
+        text: 'X'
+
+<Interface>:
+    orientation: 'vertical'
+
+    Windowborder:
+
+    BoxLayout:
+        Label:
+            canvas.before:
+                Color:
+                    rgb: 30/255, 31/255, 34/255
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            text: 'Groups'
+            size_hint_x: None
+            width: 72
+        
+        Label:
+            canvas.before:
+                Color:
+                    rgb: 43/255, 45/255, 49/255
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            text: 'Channels'
+            size_hint_x: None
+            width: 240
+        
+        Label:
+            canvas.before:
+                Color:
+                    rgb: 49/255, 51/255, 56/255
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            text: 'Chat'
