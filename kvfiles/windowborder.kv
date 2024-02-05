@@ -1,0 +1,140 @@
+<Windowborder_move>:
+    background_color: 0, 0, 0, 0
+
+<Windowborder_resize>:    
+    size_hint_x: None
+    size_hint_y: None
+    cursor_to_set: None
+    background_color: 0, 0, 0, 0
+
+<Windowborder_buttonsarea@Widget+HoverBehavior>:
+    size_hint: None, None
+
+<Windowborder_buttons>:
+    canvas.before:
+        Color:
+            rgba: self.r, self.g, self.b, self.alpha
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    r: 1
+    g: 1
+    b: 1
+    alpha: 0
+    intensity: .5
+    size_hint_x: None
+    width: 28
+    background_color: 0, 0, 0, 0
+
+<Windowborder>:
+    windowglobalheight: 5
+    resizepress: False
+
+    Windowborder_move:
+        size_hint_x: None
+        pos: box.pos
+        size: box.size
+
+    BoxLayout:
+        id: box
+        size_hint_y: None
+        height: 22
+        pos: (0, root.size[1]-self.height)
+
+        Label:
+            size_hint_x: None
+            width: 72
+            text: 'Dyscord'
+
+        Widget:
+            id: move
+            size_hint: (1, 1)
+        
+        Windowborder_buttons:
+            id: minimize
+            text: '-'
+
+        Windowborder_buttons:
+            id: maximize
+            text: '◻'
+
+        Windowborder_buttons:
+            id: close
+            text: 'X'
+            g: 0
+            b: 0
+            intensity: 1
+
+    Windowborder_buttonsarea:
+        size: (minimize.size[0]-1, minimize.size[1]-root.windowglobalheight)
+        pos: minimize.pos
+        on_enter: minimize.enter()
+        on_leave: minimize.leave()
+
+    Windowborder_buttonsarea:
+        size: (maximize.size[0]-1, maximize.size[1]-root.windowglobalheight)
+        pos: maximize.pos
+        on_enter: maximize.enter()
+        on_leave: maximize.leave()
+
+    Windowborder_buttonsarea:
+        size: (close.size[0]-5, close.size[1]-root.windowglobalheight)
+        pos: close.pos
+        on_enter: close.enter()
+        on_leave: close.leave()
+
+    Windowborder_resize:
+        name: 'bottom_left'
+        width: 5
+        height: root.windowglobalheight
+        pos: (0, 0)
+        cursor_to_set: 'size_nesw'
+
+    Windowborder_resize:
+        name: 'bottom'
+        width: root.size[0]-10
+        height: root.windowglobalheight
+        pos: (5, 0)
+        cursor_to_set: 'size_ns'
+
+    Windowborder_resize:
+        name: 'bottom_right'
+        width: 5
+        height: root.windowglobalheight
+        pos: (root.size[0]-5, 0)
+        cursor_to_set: 'size_nwse'
+
+    Windowborder_resize:
+        name: 'top_left'
+        width: 5
+        height: root.windowglobalheight
+        pos: (0, root.size[1]-5)
+        cursor_to_set: 'size_nwse'
+
+    Windowborder_resize:
+        name: 'top'
+        width: root.size[0]-10
+        height: root.windowglobalheight
+        pos: (5, root.size[1]-5)
+        cursor_to_set: 'size_ns'
+
+    Windowborder_resize:
+        name: 'top_right'
+        width: 5
+        height: root.windowglobalheight
+        pos: (root.size[0]-5, root.size[1]-5)
+        cursor_to_set: 'size_nesw'
+
+    Windowborder_resize:
+        name: 'left'
+        width: root.windowglobalheight
+        height: root.size[1]-10
+        pos: (0, 5)
+        cursor_to_set: 'size_we'
+    
+    Windowborder_resize:
+        name: 'right'
+        width: root.windowglobalheight
+        height: root.size[1]-10
+        pos: (root.size[0]-5, 5)
+        cursor_to_set: 'size_we'

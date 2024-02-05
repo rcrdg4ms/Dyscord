@@ -1,49 +1,10 @@
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.button import Button
 from kivy.core.window import Window
-from pynput.mouse import Controller
 from kivymd.uix.behaviors import HoverBehavior
-from kivy.uix.widget import Widget
-from kivy.animation import Animation
 from kivy.properties import NumericProperty
+from mouse import Mouse, Cursor, Windowv
 
-
-Mouse = Controller()
-
-class _Cursor:
-    __cursor__ = []
-
-    def add(self, cursor):
-        self.__cursor__.append(cursor)
-        Window.set_system_cursor(self.__cursor__[-1])
-
-    
-    def remove(self):
-        if self.size > 0:
-            self.__cursor__.pop(0)
-
-        if self.size == 0:
-            Window.set_system_cursor('arrow')
-
-    @property
-    def size(self):
-        return len(self.__cursor__)
-
-class _Window:
-    fullscreen = False
-    left = 0
-    top = 0
-    size = (0, 0)
-    Window.maximize()
-    Maxsize = (Window.size[0], Window.size[1]+22)
-    Window.restore()
-
-Cursor = _Cursor()
-Windowv = _Window()
-
-class Interface(FloatLayout):
-    ...
 
 class Windowborder(FloatLayout):
     ...

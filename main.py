@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.core.window import Window
 
 from interfaces import *
 
