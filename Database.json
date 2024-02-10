@@ -5,15 +5,33 @@
         "source": null,
         "groups": [
             1,
-            3
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
         ]
     },
     {
         "type": "Group",
         "name": "Group1",
         "source": null,
-        "channels": [
+        "categorys": [
             2
+        ]
+    },
+    {
+        "type": "Category",
+        "name": "text channel",
+        "channels": [
+            3
         ]
     },
     {
@@ -25,13 +43,20 @@
         "type": "Group",
         "name": "Group2",
         "source": null,
+        "categorys": [
+            5
+        ]
+    },
+    {
+        "type": "Category",
+        "name": "text channel",
         "channels": [
-            2
+            6
         ]
     },
     {
         "type": "Channel",
-        "name": "Channel2",
+        "name": "Channel1",
         "messages": []
     }
 ]

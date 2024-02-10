@@ -1,3 +1,5 @@
 venv/
 __pycache__/
 ignore/
+kvfiles/channels.kv
+interfaces/channels.py
