@@ -1,5 +1,6 @@
 #: include kvfiles/windowborder.kv
 #: include kvfiles/groups.kv
+#: include kvfiles/channels.kv
 
 <Interface>:
     canvas.before:
@@ -22,7 +23,7 @@
                 Color:
                     rgb: 43/255, 45/255, 49/255
                 RoundedRectangle:
-                    radius: [(11.25, 11.25), (0,0), (0,0), (0,0)]
+                    radius: [(45/4, 45/4), (0,0), (0,0), (0,0)]
                     pos: self.pos
                     size: self.size
 
@@ -40,7 +41,21 @@
 
             text: 'Chat'
 
-    Groups:
+
+    FloatLayout:
+        id: mainfloat
+        size_hint_y: None
         height: root.height-22
 
+        Channels:
+            id: channels
+
+        Groups:
+            id: groups
+
     Windowborder:
+
+    Group_popup:
+        id: grouppopup
+        scroll_y: groups.ids.scroll.scroll_y
+        cheight: groups.ids.scroll.children[0].height

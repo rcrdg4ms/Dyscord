@@ -1,5 +1,12 @@
 {
     "user": 0,
-    "group": 3,
-    "channel": 1
+    "last_group": 1,
+    "groups": {
+        "1": {
+            "last_chat": 5
+        },
+        "6": {
+            "last_chat": 8
+        }
+    }
 }

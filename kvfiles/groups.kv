@@ -1,14 +1,38 @@
-<scrollarea@Widget+HoverBehavior>:
+<Group_popup>:
+    cheight: 0
+    alpha: 0
+    pos_y: 0
+    groupname: ''
 
+    size_hint_x: None
+    width: 0
+    bar_color: 0,0,0,0
+    bar_inactive_color: 0,0,0,0
+    bar_width: 0
 
-<Floatl>:
-    canvas.before:
-        Color:
-            rgb: 53/255, 54/255, 60/255
+    FloatLayout:
+        size_hint_y: None
+        height: root.cheight+22
 
-        Line:
-            points: [self.pos[0]+20, self.height-60, self.pos[0]+20+32, self.height-60]
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 17/255,18/255,20/255, root.alpha
+                RoundedRectangle:
+                    radius: [45/8]
+                    pos: self.pos
+                    size: self.size
+                Triangle:
+                    points: (self.pos[0], self.pos[1]+(self.size[1]/2)+5, self.pos[0]-5, self.pos[1]+(self.size[1]/2), self.pos[0], self.pos[1]+(self.size[1]/2)-5)
 
+            size_hint: (None, None)
+            size: (self.texture_size[0]+24, 36)
+            valign: 'middle'
+            font_size: 16
+            bold: True
+            pos: (80, root.pos_y+(56/2)-(self.size[1]/2))
+            color: 1,1,1,root.alpha
+            text: root.groupname
 
 <Group_button>:
     source: 'imgs/default.png'
@@ -37,18 +61,14 @@
     width: 48
     height: 48
 
-
 <Group>:
-    groupname: ''
-    position_y: 0
-    alpha: 0
+    _groupname: ''
     pingsize: 1
     colors: [(0,0,0,0), (0,0,0,0)]
     source: 'imgs/default.png'
 
-    bar_color: 0,0,0,0
-    bar_inactive_color: 0,0,0,0
-    bar_width: 0
+    size_hint_y: None
+    height: 48+8
 
     canvas.before:
         Color:
@@ -56,49 +76,34 @@
         RoundedRectangle:
             radius: [45/16]
             size: self.pingsize, self.pingsize
-            pos: (-16, self.position_y+(48/2)-(20/2))
+            
+            pos: ((self.pingsize-4)*(-1 if self.pingsize-4 > 0 else 1), self.pos[1]+4+(48/2)-(self.pingsize/2))
 
 
     Group_button:
         id: btn
         color_on: root.colors[0]
-        pos: (12, root.position_y)
+        pos: (12, root.pos[1]+4)
         source: root.source
 
-    Label:
-        canvas.before:
-            Color:
-                rgba: 17/255,18/255,20/255,root.alpha
-            RoundedRectangle:
-                radius: [45/8]
-                pos: self.pos
-                size: self.size
-            Triangle:
-                points: (self.pos[0], self.pos[1]+(self.size[1]/2)+5, self.pos[0]-5, self.pos[1]+(self.size[1]/2), self.pos[0], self.pos[1]+(self.size[1]/2)-5)
-
-        size_hint: (None, None)
-        size: (self.texture_size[0]+24, 36)
-        valign: 'middle'
-        font_size: 16
-        bold: True
-        pos: (80, root.position_y+(48/2)-(self.size[1]/2))
-        color: 1,1,1,root.alpha
-        text: root.groupname
-
 <Directmessages>:
-    groupname: 'Direct messages'
+    _groupname: 'Direct messages'
     colors: [(49/255, 51/255, 56/255, 1), (88/255, 101/255, 242/255, 1)]
     source: 'imgs/directmessages.png'
 
+<Boxlg>:
+    canvas.before:
+        Color:
+            rgb: 53/255, 54/255, 60/255
+
+        Line:
+            points: [self.pos[0]+20, self.height-61, self.pos[0]+20+32, self.height-61]
+
 <Groups>:
-    size_hint_y: None
-    inscrollarea: False
-
     Groups_scroll:
-
-
-    scrollarea:
+        id: scroll
+        bar_color: 0,0,0,0
+        bar_inactive_color: 0,0,0,0
+        bar_width: 0
         size_hint_x: None
         width: 72
-        on_enter: root.inscrollarea = True
-        on_leave: root.inscrollarea = False

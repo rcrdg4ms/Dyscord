@@ -5,33 +5,73 @@
         "source": null,
         "groups": [
             1,
-            3
+            6
         ]
     },
     {
         "type": "Group",
         "name": "Group1",
         "source": null,
-        "channels": [
-            2
+        "childrens": [
+            2,
+            4
         ]
     },
     {
-        "type": "Channel",
-        "name": "Channel1",
+        "type": "Category",
+        "name": "text channels",
+        "chats": [
+            3
+        ]
+    },
+    {
+        "type": "Chat",
+        "name": "general",
+        "messages": []
+    },
+    {
+        "type": "Category",
+        "name": "bots",
+        "chats": [
+            5
+        ]
+    },
+    {
+        "type": "Chat",
+        "name": "commands",
         "messages": []
     },
     {
         "type": "Group",
-        "name": "Group2",
+        "name": "Ventilador da paz",
         "source": null,
-        "channels": [
-            2
+        "childrens": [
+            7,
+            9
         ]
     },
     {
-        "type": "Channel",
-        "name": "Channel2",
+        "type": "Category",
+        "name": "text channels",
+        "chats": [
+            8
+        ]
+    },
+    {
+        "type": "Chat",
+        "name": "global",
+        "messages": []
+    },
+    {
+        "type": "Category",
+        "name": "bots",
+        "chats": [
+            10
+        ]
+    },
+    {
+        "type": "Chat",
+        "name": "commands-mudae",
         "messages": []
     }
 ]

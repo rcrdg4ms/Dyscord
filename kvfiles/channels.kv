@@ -1,0 +1,224 @@
+#:import localdb database.localdb
+
+<Channels_scroll>:
+    size_hint: (None, None)
+    width: 240
+    bar_inactive_color: (0,0,0,0)
+    bar_color: (26/255, 27/255, 30/255, 1)
+    bar_width: 4
+    scroll_type: ['bars']
+
+<Channels_category_button>:
+    canvas.before:
+        Color:
+            rgba: self.color_on[0], self.color_on[1], self.color_on[2], 1 if self.show else 0
+        Triangle:
+            points: (self.pos[0]+4, self.pos[1]+(self.size[1]/2)+2, self.pos[0]+8, self.pos[1]+(self.size[1]/2)-2, self.pos[0]+12, self.pos[1]+(self.size[1]/2)+2)
+    
+        Color:
+            rgba: self.color_on[0], self.color_on[1], self.color_on[2], 0 if self.show else 1
+        Triangle:
+            points:(self.pos[0]+6, self.pos[1]+(self.size[1]/2)+4, self.pos[0]+11, self.pos[1]+(self.size[1]/2), self.pos[0]+6, self.pos[1]+(self.size[1]/2)-4)
+
+    size_hint: (None, None)
+    background_color: 0,0,0,0
+    label_text: ''
+    show: True
+
+    Label:
+        text: root.label_text
+        pos: (root.pos[0]+16, root.pos[1])
+        color: root.color_on
+        bold: True
+        font_size: 11
+        size: (root.width-16, root.height)
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+
+<Channels_category>:
+    size_hint_y: None
+    height: 9+22+9+chats.height
+
+    Channels_category_button:
+        id: btn
+        size: (232, 22)
+        pos: (root.pos[0], root.pos[1]+root.height-22-9)
+        label_text: root.category_name
+
+    BoxLayout:
+        id: chats
+        size_hint_y: None
+        orientation: 'vertical'
+        pos: (0, btn.pos[1]-self.height)
+        height: 0
+
+<Channels_chat_button>:
+    alpha: 0
+
+    canvas.before:
+        Color:
+            rgba: 1,1,1,self.alpha
+        RoundedRectangle:
+            radius: [45/8]
+            size: self.size
+            pos: self.pos
+
+    size_hint: (None, None)
+    background_color: 0,0,0,0
+    label_text: ''
+    label_color: (148/255, 155/255, 153/255, 1)
+
+    Widget:
+        canvas.before:
+            Color:
+                rgb: 128/255, 132/255, 142/255
+            Line:
+                points: [self.pos[0]+5, self.pos[1]+10, self.pos[0]+19, self.pos[1]+10]
+            Line:
+                points: [self.pos[0]+6, self.pos[1]+15, self.pos[0]+20, self.pos[1]+15]
+            Line:
+                points: [self.pos[0]+8, self.pos[1]+5, self.pos[0]+11, self.pos[1]+20]
+            Line:
+                points: [self.pos[0]+14, self.pos[1]+5, self.pos[0]+17, self.pos[1]+20]
+
+        size_hint: (None, None)
+        size: (24, 24)
+        pos: (root.pos[0]+6, root.pos[1]+4)
+
+    Label:
+        text: root.label_text
+        pos: (root.pos[0]+32, root.pos[1])
+        bold: True
+        color: root.label_color
+        size: (root.width-32, root.height)
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+
+<Channels_chat>:
+    size_hint_y: None
+    height: 1+32+1
+    chatid: 0
+    
+    Channels_chat_button:
+        size: (224, 32)
+        pos: (8, root.pos[1]+1)
+        label_text: root.chat_name
+        alpha: .25 if root.chatid == localdb.get('groups')[str(localdb.get('last_group'))]['last_chat'] else 0
+        label_color: (1,1,1,1) if root.chatid == localdb.get('groups')[str(localdb.get('last_group'))]['last_chat'] else (148/255, 155/255, 153/255, 1)
+
+
+<Channels_group_label>:
+    canvas.before:
+        Color:
+            rgba: 1,1,1,self.alpha
+        RoundedRectangle:
+            radius: [(45/4, 45/4), (0,0), (0,0), (0,0)]
+            pos: self.pos
+            size: self.size
+        
+        Color:
+            rgba: 1,1,1, 1 if not self.show else 0
+        Line:
+            width: 1.1
+            points: [self.pos[0]+self.width-18, self.pos[1]+28, self.pos[0]+self.width-24, self.pos[1]+22, self.pos[0]+self.width-30, self.pos[1]+28]
+
+        Color:
+            rgba: 1,1,1, 1 if self.show else 0
+        Line:
+            width: 1.1
+            points: [self.pos[0]+self.width-18, self.pos[1]+20, self.pos[0]+self.width-30, self.pos[1]+32]
+        Line:
+            width: 1.1
+            points: [self.pos[0]+self.width-18, self.pos[1]+32, self.pos[0]+self.width-30, self.pos[1]+20]
+
+    position_x: 0
+    groupname: ''
+    alpha: 0
+    show: False
+
+    size_hint: (None, None)
+    size: 240, 48
+    background_color: 0,0,0,0
+
+    Widget:
+        canvas.before:
+            Color:
+                rgb: 1,0,1
+            Triangle:
+                points: [self.pos[0]+4, self.pos[1]+4, self.pos[0]+12, self.pos[1]+20, self.pos[0]+20, self.pos[1]+4]
+
+        size_hint: (None, None)
+        size: (24, 24)
+        pos: (root.pos[0]+12, root.pos[1]+12)
+
+    Label:
+        size_hint: (None, None)
+        size: 168, 48
+        pos: (root.pos[0]+36, root.pos[1])
+        text: root.groupname
+        text_size: self.size
+        bold: True
+        font_size: 16
+        valign: 'middle'
+        halign: 'left'
+
+
+<Channels_group_button>:
+    canvas.before:
+        Color:
+            rgba: self.color_back[0], self.color_back[1], self.color_back[2], self.alpha
+        RoundedRectangle:
+            radius: [45/16]
+            size: self.size
+            pos: self.pos
+        
+    alpha: 0
+
+    size_hint: (None, None)
+    size: (0, 0)
+    color: (0,0,0,0)
+    background_color: 0,0,0,0
+    text_size: self.size
+    bold: True
+    valign: 'middle'
+    padding: [8, 0, 0, 0]
+
+<Channels_group_popup>:
+    canvas.before:
+        Color:
+            rgb: 16/255, 18/255, 20/255
+        RoundedRectangle:
+            radius: [45/8]
+            size: self.size
+            pos: self.pos
+
+    size_hint: (None, None)
+    size: (0,0)
+    orientation: 'vertical'
+    spacing: 2
+    padding: [8, 0, 0, 8]
+
+    position_x: 0
+    root_height: 0
+    pos: ((self.position_x+10+110)-(self.width/2), self.root_height-self.height-8-48)
+
+
+<Channels>:
+    canvas.before:
+        Color:
+            rgb: 30/255, 31/255, 34/255
+        Line:
+            points: [self.pos[0], self.height-49, self.width+72, self.height-49]
+
+    position_x: 72
+
+    Channels_group_label:
+        id: grouplabel
+        pos: (root.position_x, root.height-self.height)
+        groupname: root.groupname
+
+    Channels_scroll:
+        height: root.height-grouplabel.height
+        pos: (root.position_x, root.pos[1])
