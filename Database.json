@@ -43,7 +43,7 @@
     },
     {
         "type": "Group",
-        "name": "Ventilador da paz",
+        "name": "Group2",
         "source": null,
         "childrens": [
             7,
@@ -71,7 +71,7 @@
     },
     {
         "type": "Chat",
-        "name": "commands-mudae",
+        "name": "commands",
         "messages": []
     }
 ]
